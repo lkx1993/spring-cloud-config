@@ -8,6 +8,18 @@ spring:
     base-url: http://localhost:8507/
 server:
   port: 8090
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8501/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
 sample:
   zipkin:
     # When enabled=false, traces log to the console. Comment to send to zipkin
