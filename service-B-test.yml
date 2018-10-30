@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: service-A
+server:
+  port: 8090
+message: service-B test mode
