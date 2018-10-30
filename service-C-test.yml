@@ -1,6 +1,15 @@
 spring:
   application:
     name: service-A
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://localhost:8507/
 server:
   port: 8090
+sample:
+  zipkin:
+    # When enabled=false, traces log to the console. Comment to send to zipkin
+    enabled: true
 message: service-C test mode
