@@ -1,13 +1,13 @@
 spring:
   application:
-    name: service-A
+    name: service-B
   sleuth:
     sampler:
       probability: 1.0
   zipkin:
     base-url: http://localhost:8507/
 server:
-  port: 8090
+  port: 8091
 eureka:
   client:
     serviceUrl:
