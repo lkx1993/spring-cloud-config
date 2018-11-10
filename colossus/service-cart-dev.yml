@@ -1,0 +1,86 @@
+spring:
+  application:
+    name: service-cart
+  datasource:
+    druid:
+      url: jdbc:mysql://db.tembin.com:3306/tembin_money?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+      username: root
+      password: 11
+      driver-class-name: com.mysql.jdbc.Driver
+      max-open-prepared-statements: 20
+      initial-size: 2
+      min-idle: 2
+      max-active: 10
+      test-on-borrow: true
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-While-Idle: true
+      test-on-return: false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall,log4j,config
+      web-stat-filter:
+        url-pattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+        session-stat-enable: false
+        session-stat-max-count: 1000
+        profile-enable: true
+      stat-view-servlet:
+        url-pattern: /druid/*
+        reset-enable: true
+        login-username: admin
+        login-password: 123456
+        allow: 127.0.0.1
+        deny:
+mybatis:
+  type-aliases-package: cn.binux.pojo
+  mapper-locations: classpath:mapper/*.xml
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+swagger2.package: com.colossus.cart.service
+
+# Redis
+redisKey:
+  # 缓存时间 默认半小时
+  expire_time: 1800
+  prefix:
+    # 购物车
+    cart_info_profix: 'CART_INFO:'
+    # 商品
+    item_info_profix: 'ITEM_INFO:'
+    item_info_base_suffix: ':BASE'
+    item_info_desc_suffix: ':DESC'
+    # Redis 缓存时间 默认3天
+    redis_cart_expire_time: 259200
+
+
+login:
+  # 验证名
+  validation:
+    #登录名
+    ispinengaged: isPinEngaged
+    #邮箱
+    isemailengaged: isEmailEngaged
+    #手机
+    ismobileengaged: isMobileEngaged
+  # 推荐登录名后缀随机数取值范围
+  random_number: 50000
+  # 登录成功页面
+  success_url: http://localhost:8104/success
+server:
+  port: 8052
+feign:
+  hystrix:
+    enabled: true
+
+eureka:
+  instance:
+    status-page-url: http://localhost:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8501/eureka/
