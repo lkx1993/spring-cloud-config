@@ -14,8 +14,6 @@ jwt:
   signingSecret: EatktOhVUNCzUTql02t63a7UBIykErln1mQ1D0uyoS4KmS2RJJReerLZ9Ib2phWn
   encryptionSecret: R5ORfLhGOpHyTdHQ1UiRuWROSMyUyOm4
   header: jwtToken
-server:
-  port: 8090
 eureka:
   client:
     serviceUrl:
